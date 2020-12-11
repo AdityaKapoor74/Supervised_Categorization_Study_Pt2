@@ -305,13 +305,10 @@ def classify_performance_type3(request):
         return render(request,"Questionnaire_type2/observe_and_learn.html",{"iteration":request.session['iteration']})
     else:
         #Testing phase
-        return render(request,"Questionnaire_type2/test_phase.html")
+        return render(request,"Questionnaire_type2/common_features_test_phase.html")
 
 def classify_result_type3(request):
     return render(request,"Questionnaire_type2/classify_performance.html",{"performance_history":request.session['performance']})
-
-def common_features_test_phase_type3(request):
-    return render(request,"Questionnaire_type2/common_features_test_phase.html")
 
 def common_features_test_phase_block_type3(request):
     return render(request,"Questionnaire_type2/common_features_test_phase_block.html",{"iteration":request.session['common_features_iteration']})

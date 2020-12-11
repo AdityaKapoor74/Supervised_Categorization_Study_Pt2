@@ -17,7 +17,6 @@ urlpatterns = [
     path("classify_and_learn_display_stimuli/", views.classify_and_learn_display_stimuli_type3,name='classify_and_learn_display_stimuli_type3'),
     path("classify_result/", views.classify_result_type3, name='classify_result_type3'),
     path("classify_performance/", views.classify_performance_type3, name='classify_performance_type3'),
-    path("common_features_test_phase/", views.common_features_test_phase_type3, name='common_features_test_phase_type3'),
     path("common_features_test_phase_block/", views.common_features_test_phase_block_type3, name='common_features_test_phase_block_type3'),
     path("common_features_test_samples/", views.common_features_test_block_display_stimuli_type3, name='common_features_test_block_display_stimuli_type3'),
     path("description/", views.save_responses_description, name='save_responses_description_type3'),
