@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Questionnaire',
-    'QuestionnaireColorCueNew',
+    'Questionnaire_type1',
+    'Questionnaire_type2',
 ]
 
 MIDDLEWARE = [

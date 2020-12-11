@@ -11,18 +11,18 @@ import datetime
 
 def register(request,num):
     if num>4:
-        return render(request,'Questionnaire/set_404.html')
+        return render(request,'Questionnaire_type1/set_404.html')
     request.session['setnumber'] = num
-    return render(request,'Questionnaire/register.html')
+    return render(request,'Questionnaire_type1/register.html')
 
 def contact(request):
-    return render(request,'Questionnaire/contact.html')
+    return render(request,'Questionnaire_type1/contact.html')
 
 def about(request):
-    return render(request,'Questionnaire/about.html')
+    return render(request,'Questionnaire_type1/about.html')
 
 def terms(request):
-    return render(request,'Questionnaire/terms.html')
+    return render(request,'Questionnaire_type1/terms.html')
 
 
 def register_type1_done(request):
@@ -35,7 +35,7 @@ def register_type1_done(request):
                 try:
                     validate_email(email)
                 except ValidationError as e:
-                    return render(request,'Questionnaire/register.html',{'error':'Please verify your email.'})
+                    return render(request,'Questionnaire_type1/register.html',{'error':'Please verify your email.'})
                 user.email=email
                 user.first_name = request.POST['firstname']
                 user.last_name = request.POST['lastname']
@@ -51,14 +51,14 @@ def register_type1_done(request):
                     elif option=="Other":
                         user.gender="Other"
                 else:
-                    return render(request, 'Questionnaire/register.html',
+                    return render(request, 'Questionnaire_type1/register.html',
                                       {'error': 'All fields are required.'})
 
                 user.city = request.POST['city']
                 user.country = request.POST['country']
 
                 if 'terms' not in request.POST:
-                    return render(request, 'Questionnaire/register.html', {'error': 'Please accept the terms and conditions.'})
+                    return render(request, 'Questionnaire_type1/register.html', {'error': 'Please accept the terms and conditions.'})
 
                 user.save()
                 request.session['user_id'] = user.id
@@ -84,25 +84,25 @@ def register_type1_done(request):
                 request.session['elapsed_time'] = -1
                 request.session['file_name'] = None
             except ValueError as e:
-                return render(request,'Questionnaire/register.html',{'error':'Incorrect values.Please try again.'})
+                return render(request,'Questionnaire_type1/register.html',{'error':'Incorrect values.Please try again.'})
 
-            return render(request,'Questionnaire/welcome.html')
+            return render(request,'Questionnaire_type1/welcome.html')
         else:
-            return render(request,'Questionnaire/register.html',{'error':'All fields are required.'})
+            return render(request,'Questionnaire_type1/register.html',{'error':'All fields are required.'})
     else:
-        return render(request,'Questionnaire/register.html')
+        return render(request,'Questionnaire_type1/register.html')
 
 def training_phase_start_type1(request):
     print("SET NUMBER")
     print(request.session['setnumber'])
-    return render(request, 'Questionnaire/training_phase_start.html')
+    return render(request, 'Questionnaire_type1/training_phase_start.html')
 
 def observe_and_learn_type1(request):
-    return render(request, 'Questionnaire/observe_and_learn.html',
+    return render(request, 'Questionnaire_type1/observe_and_learn.html',
                   {'iteration': request.session['iteration']})
 
 def observe_and_learn_instructions_type1(request):
-    return render(request,'Questionnaire/observe_and_learn_instructions.html')
+    return render(request,'Questionnaire_type1/observe_and_learn_instructions.html')
 
 def observe_and_learn_display_stimuli_type1(request):
     if len(request.session['obs_learn_samples'])!=0:
@@ -122,11 +122,11 @@ def observe_and_learn_display_stimuli_type1(request):
         elif request.session['setnumber'] == 4:
             samples = Observe_And_Learn_Samples_set5.objects.get(pk=id)
 
-        return render(request, 'Questionnaire/observe_and_learn_samples.html',{'samples':samples})
+        return render(request, 'Questionnaire_type1/observe_and_learn_samples.html',{'samples':samples})
 
     else:
         if request.session['flag_training'] == True:
-            return render(request,'Questionnaire/classify_and_learn.html',{'iteration': request.session['iteration']})
+            return render(request,'Questionnaire_type1/classify_and_learn.html',{'iteration': request.session['iteration']})
         if request.session['setnumber'] == 0:
             request.session['obs_learn_samples'] = list(Observe_And_Learn_Samples_set1.objects.all().values_list('id', flat=True))
             random.shuffle(request.session['obs_learn_samples'])
@@ -158,14 +158,14 @@ def observe_and_learn_display_stimuli_type1(request):
             samples = Observe_And_Learn_Samples_set5.objects.get(pk=id)
             request.session['obs_learn_samples'] = request.session['obs_learn_samples'][1:]
 
-        return render(request, 'Questionnaire/observe_and_learn_samples.html', {'samples': samples})
+        return render(request, 'Questionnaire_type1/observe_and_learn_samples.html', {'samples': samples})
 
 def fixation_screen_observe_type1(request):
-    return render(request,'Questionnaire/fixation_screen.html')
+    return render(request,'Questionnaire_type1/fixation_screen.html')
 
 
 def classify_and_learn_instructions_type1(request):
-    return render(request,'Questionnaire/classify_and_learn_instructions.html')
+    return render(request,'Questionnaire_type1/classify_and_learn_instructions.html')
 
 def classify_and_learn_display_stimuli_type1(request):
     if request.method=="POST":
@@ -217,9 +217,9 @@ def classify_and_learn_display_stimuli_type1(request):
 
         if option==request.session['correct_answer']:
             request.session['score'] += 1
-            return render(request, "Questionnaire/correct_ans_classify.html",{'time_taken':round(request.session['elapsed_time'],2)})
+            return render(request, "Questionnaire_type1/correct_ans_classify.html",{'time_taken':round(request.session['elapsed_time'],2)})
         else:
-            return render(request,"Questionnaire/wrong_ans_warning.html",{'correct_answer':request.session['correct_answer'],'time_taken':round(request.session['elapsed_time'],2)})
+            return render(request,"Questionnaire_type1/wrong_ans_warning.html",{'correct_answer':request.session['correct_answer'],'time_taken':round(request.session['elapsed_time'],2)})
 
 
     if len(request.session['classify_learn_samples'])!=0:
@@ -240,12 +240,12 @@ def classify_and_learn_display_stimuli_type1(request):
             samples = Classify_And_Learn_Samples_set5.objects.get(pk=id)
         request.session['correct_answer'] = samples.sample_label
         request.session['start_time'] = time.time()
-        return render(request, 'Questionnaire/classify_and_learn_samples.html',{'samples':samples})
+        return render(request, 'Questionnaire_type1/classify_and_learn_samples.html',{'samples':samples})
 
     else:
         if request.session['flag_test'] == True:
             request.session['performance']+=str(request.session['score']*10)+"% "
-            return render(request,'Questionnaire/classify_result.html',{"performance":request.session['score']*10,"correct":request.session['score'],"wrong":10-request.session['score']})
+            return render(request,'Questionnaire_type1/classify_result.html',{"performance":request.session['score']*10,"correct":request.session['score'],"wrong":10-request.session['score']})
         if request.session['setnumber'] == 0:
             request.session['classify_learn_samples'] = list(Classify_And_Learn_Samples_set1.objects.all().values_list('id', flat=True))
             random.shuffle(request.session['classify_learn_samples'])
@@ -283,10 +283,10 @@ def classify_and_learn_display_stimuli_type1(request):
             request.session['classify_learn_samples'] = request.session['classify_learn_samples'][1:]
         request.session['correct_answer'] = samples.sample_label
         request.session['start_time'] = time.time()
-        return render(request, 'Questionnaire/classify_and_learn_samples.html', {'samples': samples})
+        return render(request, 'Questionnaire_type1/classify_and_learn_samples.html', {'samples': samples})
 
 def fixation_screen_classify_type1(request):
-    return render(request, 'Questionnaire/fixation_screen_classify.html')
+    return render(request, 'Questionnaire_type1/fixation_screen_classify.html')
 
 def classify_performance_type1(request):
     if request.session['score']>8:
@@ -298,20 +298,20 @@ def classify_performance_type1(request):
         request.session['flag_training'] = False
         request.session['score'] = 0
         if request.session['iteration'] > 10:
-            return render(request,"Questionnaire/early_exit.html")
-        return render(request,"Questionnaire/observe_and_learn.html",{"iteration":request.session['iteration']})
+            return render(request,"Questionnaire_type1/early_exit.html")
+        return render(request,"Questionnaire_type1/observe_and_learn.html",{"iteration":request.session['iteration']})
     else:
         #Testing phase
-        return render(request,"Questionnaire/test_phase.html")
+        return render(request,"Questionnaire_type1/test_phase.html")
 
 def classify_result_type1(request):
-    return render(request,"Questionnaire/classify_performance.html",{"performance_history":request.session['performance']})
+    return render(request,"Questionnaire_type1/classify_performance.html",{"performance_history":request.session['performance']})
 
 def test_phase_type1(request):
-    return render(request,"Questionnaire/test_phase_instructions.html")
+    return render(request,"Questionnaire_type1/test_phase_instructions.html")
 
 def test_block_type1(request):
-    return render(request,"Questionnaire/test_block.html",{"iteration":request.session['test_iteration']})
+    return render(request,"Questionnaire_type1/test_block.html",{"iteration":request.session['test_iteration']})
 
 def test_block_display_stimuli_type1(request):
     if request.method=="POST":
@@ -381,7 +381,7 @@ def test_block_display_stimuli_type1(request):
         transfer_stimuli.time_taken = request.session['elapsed_time']
         user_response.save()
         transfer_stimuli.save()
-        return render(request,"Questionnaire/selected_category_test.html",{"option":option, "timetaken":round(request.session['elapsed_time'],2)})
+        return render(request,"Questionnaire_type1/selected_category_test.html",{"option":option, "timetaken":round(request.session['elapsed_time'],2)})
 
     if len(request.session['test_samples'])!=0:
         request.session['quid'] = request.session['test_samples'][0]
@@ -401,14 +401,14 @@ def test_block_display_stimuli_type1(request):
 
         request.session['start_time'] = time.time()
 
-        return render(request, 'Questionnaire/test_samples.html',{'samples':samples})
+        return render(request, 'Questionnaire_type1/test_samples.html',{'samples':samples})
 
     else:
         if request.session['test_phase_flag'] == True and request.session['test_iteration']<4:
             request.session['test_phase_flag'] = False
-            return render(request, "Questionnaire/break.html")
+            return render(request, "Questionnaire_type1/break.html")
         if request.session['test_phase_flag'] == True and request.session['test_iteration']>3:
-            return render(request,"Questionnaire/break_to_features.html")
+            return render(request,"Questionnaire_type1/break_to_features.html")
 
         if request.session['setnumber'] == 0:
             request.session['test_samples'] = list(Test_set1.objects.all().values_list('id', flat=True))
@@ -444,16 +444,16 @@ def test_block_display_stimuli_type1(request):
         request.session['start_time'] = time.time()
 
 
-        return render(request, 'Questionnaire/test_samples.html', {'samples': samples})
+        return render(request, 'Questionnaire_type1/test_samples.html', {'samples': samples})
 
 def fixature_screen_test_type1(request):
-    return render(request,"Questionnaire/fixature_screen_test.html")
+    return render(request,"Questionnaire_type1/fixature_screen_test.html")
 
 def common_features_test_phase_type1(request):
-    return render(request,"Questionnaire/common_features_test_phase.html")
+    return render(request,"Questionnaire_type1/common_features_test_phase.html")
 
 def common_features_test_phase_block_type1(request):
-    return render(request,"Questionnaire/common_features_test_phase_block.html",{"iteration":request.session['common_features_iteration']})
+    return render(request,"Questionnaire_type1/common_features_test_phase_block.html",{"iteration":request.session['common_features_iteration']})
 
 def common_features_test_block_display_stimuli_type1(request):
     if request.method=="POST":
@@ -521,7 +521,7 @@ def common_features_test_block_display_stimuli_type1(request):
         user_response.time_taken = request.session['elapsed_time']
         user_response.save()
         common_feature.save()
-        return render(request,"Questionnaire/selected_option.html",{'correct_answer':request.session['correct_answer'],"timetaken":round(request.session['elapsed_time'],2)})
+        return render(request,"Questionnaire_type1/selected_option.html",{'correct_answer':request.session['correct_answer'],"timetaken":round(request.session['elapsed_time'],2)})
 
     if len(request.session['common_features_test_samples'])!=0:
         request.session['quid'] = request.session['common_features_test_samples'][0]
@@ -539,14 +539,14 @@ def common_features_test_block_display_stimuli_type1(request):
             samples = Common_Features_Test_set5.objects.get(pk=request.session['quid'])
 
         request.session['start_time'] = time.time()
-        return render(request, 'Questionnaire/common_features_test_samples.html',{'samples':samples})
+        return render(request, 'Questionnaire_type1/common_features_test_samples.html',{'samples':samples})
 
     else:
         if request.session['common_features_test_phase_flag'] == True and request.session['common_features_iteration']<4:
             request.session['common_features_test_phase_flag'] = False
-            return render(request, "Questionnaire/break_common_features.html")
+            return render(request, "Questionnaire_type1/break_common_features.html")
         if request.session['common_features_test_phase_flag'] == True and request.session['common_features_iteration']>3:
-            return render(request,"Questionnaire/description.html")
+            return render(request,"Questionnaire_type1/description.html")
 
         if request.session['setnumber'] == 0:
             request.session['common_features_test_samples'] = list(Common_Features_Test_set1.objects.all().values_list('id', flat=True))
@@ -580,7 +580,7 @@ def common_features_test_block_display_stimuli_type1(request):
             request.session['common_features_test_samples'] = request.session['common_features_test_samples'][1:]
 
         request.session['start_time'] = time.time()
-        return render(request, 'Questionnaire/common_features_test_samples.html', {'samples': samples})
+        return render(request, 'Questionnaire_type1/common_features_test_samples.html', {'samples': samples})
 
 
 def save_responses_description(request):
@@ -596,9 +596,9 @@ def save_responses_description(request):
                 user_response.save()
 
             else:
-                return render(request, 'Questionnaire/description.html', {'error': 'Please fill in the description'})
+                return render(request, 'Questionnaire_type1/description.html', {'error': 'Please fill in the description'})
 
         except ValueError as e:
-            return render(request, 'Questionnaire/description.html', {'error': 'Please fill in the description'})
+            return render(request, 'Questionnaire_type1/description.html', {'error': 'Please fill in the description'})
 
-    return render(request, 'Questionnaire/thankyou.html')
+    return render(request, 'Questionnaire_type1/thankyou.html')
