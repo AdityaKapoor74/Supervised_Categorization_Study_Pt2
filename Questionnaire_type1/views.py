@@ -181,23 +181,23 @@ def classify_and_learn_display_stimuli_type1(request):
 
         if request.session['setnumber'] == 0:
             request.session['file_name'] = str(Classify_And_Learn_Samples_set1.objects.get(pk=request.session['quid']).sample_img.path)
-            classify_stimuli.file_name = "colorNoCue/set0/"+request.session['file_name']
+            classify_stimuli.file_name = "NoColorCue_type1/set0/"+request.session['file_name']
 
         elif request.session['setnumber'] == 1:
             request.session['file_name'] = str(Classify_And_Learn_Samples_set2.objects.get(pk=request.session['quid']).sample_img.path)
-            classify_stimuli.file_name = "colorNoCue/set1/" + request.session['file_name']
+            classify_stimuli.file_name = "NoColorCue_type1/set1" + request.session['file_name']
 
         elif request.session['setnumber'] == 2:
             request.session['file_name'] = str(Classify_And_Learn_Samples_set3.objects.get(pk=request.session['quid']).sample_img.path)
-            classify_stimuli.file_name = "colorNoCue/set2/" + request.session['file_name']
+            classify_stimuli.file_name = "NoColorCue_type1/set2" + request.session['file_name']
 
         elif request.session['setnumber'] == 3:
             request.session['file_name'] = str(Classify_And_Learn_Samples_set4.objects.get(pk=request.session['quid']).sample_img.path)
-            classify_stimuli.file_name = "colorNoCue/set3/" + request.session['file_name']
+            classify_stimuli.file_name = "NoColorCue_type1/set3" + request.session['file_name']
 
         elif request.session['setnumber'] == 4:
             request.session['file_name'] = str(Classify_And_Learn_Samples_set5.objects.get(pk=request.session['quid']).sample_img.path)
-            classify_stimuli.file_name = "colorNoCue/set4/" + request.session['file_name']
+            classify_stimuli.file_name = "NoColorCue_type1/set4" + request.session['file_name']
 
         if option=="A":
             classify_stimuli.user_option = "A"
@@ -332,31 +332,31 @@ def test_block_display_stimuli_type1(request):
             user_response = UserResponse_Test_set1()
             user_response.quid = Test_set1.objects.get(pk=request.session['quid'])
             request.session['file_name'] = str(Test_set1.objects.get(pk=request.session['quid']).sample_img.path)
-            transfer_stimuli.file_name = "colorNoCue/set0/"+request.session['file_name']
+            transfer_stimuli.file_name = "NoColorCue_type1/set0/"+request.session['file_name']
 
         elif request.session['setnumber'] == 1:
             user_response = UserResponse_Test_set2()
             user_response.quid = Test_set2.objects.get(pk=request.session['quid'])
             request.session['file_name'] = str(Test_set2.objects.get(pk=request.session['quid']).sample_img.path)
-            transfer_stimuli.file_name = "colorNoCue/set1/" + request.session['file_name']
+            transfer_stimuli.file_name = "NoColorCue_type1/set1" + request.session['file_name']
 
         elif request.session['setnumber'] == 2:
             user_response = UserResponse_Test_set3()
             user_response.quid = Test_set3.objects.get(pk=request.session['quid'])
             request.session['file_name'] = str(Test_set3.objects.get(pk=request.session['quid']).sample_img.path)
-            transfer_stimuli.file_name = "colorNoCue/set2/" + request.session['file_name']
+            transfer_stimuli.file_name = "NoColorCue_type1/set2" + request.session['file_name']
 
         elif request.session['setnumber'] == 3:
             user_response = UserResponse_Test_set4()
             user_response.quid = Test_set4.objects.get(pk=request.session['quid'])
             request.session['file_name'] = str(Test_set4.objects.get(pk=request.session['quid']).sample_img.path)
-            transfer_stimuli.file_name = "colorNoCue/set3/" + request.session['file_name']
+            transfer_stimuli.file_name = "NoColorCue_type1/set3" + request.session['file_name']
 
         elif request.session['setnumber'] == 4:
             user_response = UserResponse_Test_set5()
             user_response.quid = Test_set5.objects.get(pk=request.session['quid'])
             request.session['file_name'] = str(Test_set5.objects.get(pk=request.session['quid']).sample_img.path)
-            transfer_stimuli.file_name = "colorNoCue/set4/" + request.session['file_name']
+            transfer_stimuli.file_name = "NoColorCue_type1/set4" + request.session['file_name']
 
         print("OPTION",option)
         print("FILE NAME",request.session['file_name'])
@@ -475,27 +475,27 @@ def common_features_test_block_display_stimuli_type1(request):
             user_response = UserResponse_Common_Features_Test_set1()
             user_response.quid = Common_Features_Test_set1.objects.get(pk=request.session['quid'])
             request.session['file_name'] = str(Common_Features_Test_set1.objects.get(pk=request.session['quid']).sample_img.path)
-            common_feature.file_name = "colorNoCue/set0/" + request.session['file_name']
+            common_feature.file_name = "NoColorCue_type1/set0" + request.session['file_name']
         elif request.session['setnumber'] == 1:
             user_response = UserResponse_Common_Features_Test_set2()
             user_response.quid = Common_Features_Test_set2.objects.get(pk=request.session['quid'])
             request.session['file_name'] = str(Common_Features_Test_set2.objects.get(pk=request.session['quid']).sample_img.path)
-            common_feature.file_name = "colorNoCue/set1/" + request.session['file_name']
+            common_feature.file_name = "NoColorCue_type1/set1" + request.session['file_name']
         elif request.session['setnumber'] == 2:
             user_response = UserResponse_Common_Features_Test_set3()
             user_response.quid = Common_Features_Test_set3.objects.get(pk=request.session['quid'])
             request.session['file_name'] = str(Common_Features_Test_set3.objects.get(pk=request.session['quid']).sample_img.path)
-            common_feature.file_name = "colorNoCue/set2/" + request.session['file_name']
+            common_feature.file_name = "NoColorCue_type1/set2" + request.session['file_name']
         elif request.session['setnumber'] == 3:
             user_response = UserResponse_Common_Features_Test_set4()
             user_response.quid = Common_Features_Test_set4.objects.get(pk=request.session['quid'])
             request.session['file_name'] = str(Common_Features_Test_set4.objects.get(pk=request.session['quid']).sample_img.path)
-            common_feature.file_name = "colorNoCue/set3/" + request.session['file_name']
+            common_feature.file_name = "NoColorCue_type1/set3" + request.session['file_name']
         elif request.session['setnumber'] == 4:
             user_response = UserResponse_Common_Features_Test_set5()
             user_response.quid = Common_Features_Test_set5.objects.get(pk=request.session['quid'])
             request.session['file_name'] = str(Common_Features_Test_set5.objects.get(pk=request.session['quid']).sample_img.path)
-            common_feature.file_name = "colorNoCue/set4/" + request.session['file_name']
+            common_feature.file_name = "NoColorCue_type1/set4" + request.session['file_name']
 
         if option=="A":
             user_response.user_option = "A"
@@ -506,7 +506,7 @@ def common_features_test_block_display_stimuli_type1(request):
             request.session['correct_answer'] = "B"
             common_feature.user_option = "B"
 
-        if request.session['file_name'].find("A") != -1:
+        if request.session['file_name'].find("A1_") != -1 or request.session['file_name'].find("A2_") != -1 or request.session['file_name'].find("A3_") != -1 or request.session['file_name'].find("A4_") != -1 or request.session['file_name'].find("A5_") != -1:
             common_feature.correct_option = "A"
         else:
             common_feature.correct_option = "B"
@@ -574,7 +574,7 @@ def common_features_test_block_display_stimuli_type1(request):
             request.session['common_features_test_samples'] = request.session['common_features_test_samples'][1:]
         elif request.session['setnumber'] == 4:
             request.session['common_features_test_samples'] = list(Common_Features_Test_set5.objects.all().values_list('id', flat=True))
-            random.shuffle(request.session['test_samples'])
+            random.shuffle(request.session['common_features_test_samples'])
             request.session['quid'] = request.session['common_features_test_samples'][0]
             samples = Common_Features_Test_set5.objects.get(pk=request.session['quid'])
             request.session['common_features_test_samples'] = request.session['common_features_test_samples'][1:]
